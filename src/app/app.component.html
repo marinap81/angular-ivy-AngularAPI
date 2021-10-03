@@ -1,7 +1,17 @@
 <!--{{name}} -->
 
+<div>
+Enter New Book Details
+<table>
+  <tr><td>Title:</td><td><input type="text" [(ngModel)]="selectbook.title" ></td></tr>
+  <tr><td>Release Date:</td><td><input type="text" [(ngModel)]="selectbook.releaseDate" ></td></tr>
+  <tr><td>Have Read:</td><td><input type="checkbox" [(ngModel)]="selectbook.haveRead" ></td></tr>
+  <tr><td>Rating:</td><td><input type="number" min=0 max=10 [(ngModel)]="selectbook.rating" ></td></tr>
+</table>
+<button (click)="saveBook()">Save Book</button>
+</div>
+<p></p>
 
-<p>Creating new book objects</p>
 
-
-<div *ngFor="let b of books">{{ b.title }}</div>
+<p>All Books Found</p>
+<div *ngFor="let b of books">{{ b.title }}<button (click)="removeBook(b.id)">Remove</button></div>

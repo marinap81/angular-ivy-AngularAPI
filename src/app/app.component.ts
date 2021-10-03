@@ -12,7 +12,7 @@ export class AppComponent implements OnInit  {
   constructor(private bookService: BookService){}//declaring service by adding to constructor
   //name = 'marina';
 
-  selectbook: Book;
+  selectbook: Book = { id:"",title:"", releaseDate:"", haveRead:false, rating:null};
   books: Book[] = [];
 
 
@@ -21,6 +21,10 @@ export class AppComponent implements OnInit  {
     //subscribe is listening for event below
     //subscribe is an observable ie event listener and
       //is listenint for when data occurs. this process is an a synchronous function.. doesnt run choronlogically
+      this.getBooks();
+  }
+   getBooks(){
+
     this.bookService.getBooks().subscribe((data) => { 
       this.books = data; //assigning data from api
 
@@ -32,6 +36,28 @@ export class AppComponent implements OnInit  {
 
 
     });
+  }
+  saveBook() {
+
+    if (this.selectbook.title !== "") {
+      this.bookService.saveBook(this.selectbook).subscribe((data) => {
+        console.log('Received after save: ', data);
+        // reload books
+        this.getBooks();
+      });
+    }
+    
+  }
+
+  removeBook(id) {
+
+      this.bookService.removeBook(id).subscribe((data) => {
+        console.log('Received after remove: ', data);
+        // reload books
+        this.getBooks();
+      });
+
+
 
   }
 }
