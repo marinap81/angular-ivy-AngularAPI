@@ -25,10 +25,12 @@ export class BookService {
 
     saveBook(book) {
 
-      return this.http.post<Book>(`${this.apiURL}books`, JSON.stringify(book), { headers: httpHeader });
+      //return this.http.post<Book>(`${this.apiURL}books`, JSON.stringify(book), { headers: httpHeader });
+      return this.http.post(`${this.apiURL}/books`, book);
       //passs in object
       //https://www.w3schools.com/jsref/jsref_stringify.asp
-      //When sending data to a web server the data has to be a string.
+      //When sending data to a web server the data has to be a string. don't need to include JSON.stringify.
+      //either of these return options works
     }
   
     removeBook(bookId) {
