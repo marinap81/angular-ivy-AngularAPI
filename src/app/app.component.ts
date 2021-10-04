@@ -12,7 +12,7 @@ export class AppComponent implements OnInit  {
   constructor(private bookService: BookService){}//declaring service by adding to constructor
   //name = 'marina';
 
-  selectbook: Book = { id:"",title:"", releaseDate:"", haveRead:false, rating:null};
+  selectbook: Book = { title:"", releaseDate:"", haveRead:false, rating:null};
   books: Book[] = [];
 
 
@@ -23,6 +23,8 @@ export class AppComponent implements OnInit  {
       //is listenint for when data occurs. this process is an a synchronous function.. doesnt run choronlogically
       this.getBooks();
   }
+
+  
    getBooks(){
 
     this.bookService.getBooks().subscribe((data) => { 
@@ -39,13 +41,13 @@ export class AppComponent implements OnInit  {
   }
   saveBook() {
 
-    if (this.selectbook.title !== "") {
+   
       this.bookService.saveBook(this.selectbook).subscribe((data) => {
-        console.log('Received after save: ', data);
+        console.log(data);
         // reload books
         this.getBooks();
       });
-    }
+    
     
   }
 

@@ -26,6 +26,7 @@ export class BookService {
     saveBook(book) {
 
       return this.http.post<Book>(`${this.apiURL}books`, JSON.stringify(book), { headers: httpHeader });
+      //passs in object
       //https://www.w3schools.com/jsref/jsref_stringify.asp
       //When sending data to a web server the data has to be a string.
     }
